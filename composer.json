@@ -1,0 +1,9 @@
+{
+    "name": "adolfojos/sgen-support",
+    "description": "Sistema de gestión de soporte técnico.",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    }
+}
