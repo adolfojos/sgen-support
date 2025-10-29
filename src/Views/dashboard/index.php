@@ -4,12 +4,12 @@
         <ul class="collapsible collapsible-accordion">
             <li>
                 <a href="admin/managers" class="waves-effect waves-grey">
-                    <i class="people"></i> Managers
+                    <i class="people"></i> Menu principal
                 </a>
             </li>
             <li>
                 <a href="People/" class="waves-effect waves-grey">
-                    <i class="ico-proteccion_social1"></i> People
+                    <i class="ico-proteccion_social1"></i> Menu
                 </a>
             </li>
         </ul>

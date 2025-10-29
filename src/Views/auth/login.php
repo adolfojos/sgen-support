@@ -84,7 +84,7 @@
             <!-- Enlace de recuperación -->
             <div class="col s12 form-footer" style="margin-bottom: 10px;">
                 <a class="underline text-sm text-gray-600 hover:text-gray-900" href="<?= BASE_URL ?>forgot-password">
-                    Forgot your password?
+                    Forgot your password? 
                 </a>
             </div>
         </div>
