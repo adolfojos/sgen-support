@@ -29,7 +29,7 @@
 
     <div style="text-align: center;">
         <a href="">
-            <h1 class="logo-patria"></h1>
+            <h1 class="logo-p"></h1>
         </a>
 
         <div class="container">
@@ -148,7 +148,7 @@
     <div id="message-alert-logout" class="modal">
         <div class="modal-content">
             <p>No se ha detectado actividad durante los últimos 8 minutos.</p>
-            <p>Si no se detecta actividad en la Plataforma Patria en los próximos 2 minutos serás redireccionado a la página de inicio.</p>
+            <p>Si no se detecta actividad en la Plataforma SGEN en los próximos 2 minutos serás redireccionado a la página de inicio.</p>
         </div>
         <div class="modal-footer">
             <a id="alert-accept" href="#!" class="modal-action modal-close waves-effect btn">Aceptar</a>

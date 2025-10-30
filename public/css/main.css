@@ -13,7 +13,30 @@ a {
 main, footer {
     width: 1170px;
 }
-
+.estado-en_proceso {
+    background-color: #ffa726;
+    color: #ffffff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    display: inline-block;
+}
+.estado-pendiente {
+  background-color: #f8d7da; /* rojo claro */
+    color: #721c24;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    display: inline-block;
+}
+.estado-resuelto {
+  background-color: #d4edda; /*  */
+    color: #155724;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    display: inline-block;
+}
 main {
     margin: 20px auto 0;
     min-height: 82.5%;
@@ -990,7 +1013,7 @@ footer {
 
 /*Registro*/
 
-.logo-patria {
+.logo-p {
     background: transparent url("../img/p_id.png") no-repeat scroll center 56px;
     background-size: 211px 66px;
     height: 168px;
@@ -1567,7 +1590,7 @@ h5.white-text {
 }
 
 @media all and (-webkit-min-device-pixel-ratio: 1.5), all and (-o-min-device-pixel-ratio: 3/2), all and (min--moz-device-pixel-ratio: 1.5), all and (min-device-pixel-ratio: 1.5) {
-    .logo-patria {
+    .logo-p {
         background-image: url("../img/p_id@2x.png");
     }
 
