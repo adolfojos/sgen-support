@@ -26,11 +26,15 @@ class HomeController extends Controller
     // 2. Obtener últimos 5 tickets pendientes
     $ultimos_tickets = $this->soporteModel->findLatestPending(5);
 
-    // 3. Renderizar la vista
+    // 3. Obtener últimos 5 tickets en proceso
+    $ultimos_tickets_proceso = $this->soporteModel->findLatestInProcess(5);
+    // 4. Renderizar la vista
     $this->render('dashboard/index', [
         'titulo'          => 'Dashboard - Resumen General',
         'stats'           => $stats,
-        'ultimos_tickets' => $ultimos_tickets
+        'ultimos_tickets' => $ultimos_tickets,
+        'ultimos_tickets_proceso' => $ultimos_tickets_proceso,
+        
     ]);
     }
 }

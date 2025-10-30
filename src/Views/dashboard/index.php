@@ -1,4 +1,5 @@
 <div class="inner-main">
+
     <!-- Menú lateral izquierdo -->
     <aside id="left-side-menu">
         <ul class="collapsible collapsible-accordion">
@@ -18,6 +19,8 @@
     <!-- Contenido principal -->
     <article>
         <div class="conten-body">
+
+            <!-- Panel de KPIs -->
             <div class="col s12 m12 l12">
                 <div class="card-panel">
                     <div class="card-title">
@@ -30,7 +33,6 @@
 
                     <div class="card-content bodytext">
                         <div class="row">
-                            <!-- KPIs -->
                             <?php
                             $kpis = [
                                 ['color' => 'red lighten-1', 'icon' => 'ico-por_pagar', 'value' => $stats->total_pendientes, 'label' => 'Tickets Pendientes'],
@@ -49,14 +51,11 @@
                             <?php endforeach; ?>
                         </div>
 
-                        <!-- Acciones -->
+                        <!-- Botón de acción -->
                         <div class="row btn-actions">
                             <div class="col s12">
                                 <a class="btn btn-large green darken-1">
                                     <i class="material-icons left">add</i> Abrir Ticket
-                                </a>
-                                <a class="btn btn-large blue darken-1">
-                                    <i class="material-icons left">person_add</i> Registrar Docente
                                 </a>
                             </div>
                         </div>
@@ -64,16 +63,83 @@
                 </div>
             </div>
 
-            <!-- Últimos Tickets Pendientes -->
+            <!-- Tabla de últimos tickets pendientes -->
             <div class="col s12 m12 l12">
                 <div class="card-panel">
-                <h3>Últimos Tickets Pendientes</h3>
-                <?php if (!empty($ultimos_tickets)): ?>
-                    <table class="table table-striped mt-3">
+                    <div class="card-title">
+                        <div class="row">
+                            <div class="header-title-left col s12 m6">
+                                <h5>Últimos Tickets Pendientes</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row row-end">
+                        <div class="col s12">
+                            <div class="text-info">
+                                <div class="text-content">
+                                    Estos son los últimos tickets pendientes registrados en el sistema.
+                                </div>
+                            </div>
+
+                            <?php if (!empty($ultimos_tickets)): ?>
+                                <table id="table" class="bordered highlight table-responsive">
+                                    <thead>
+                                        <tr>
+                                            <th class="hide-on-small-only">ID</th>
+                                            <th>Equipo</th>
+                                            <th>Departamento</th>
+                                            <th>Fecha</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($ultimos_tickets as $ticket): ?>
+                                            <tr class="row_table">
+                                                <td class="hide-on-small-only"><?= $ticket->id ?></td>
+                                                <td><?= htmlspecialchars($ticket->equipo_tipo . ' - ' . $ticket->equipo_serial) ?></td>
+                                                <td><?= htmlspecialchars($ticket->departamento_nombre) ?></td>
+                                                <td><?= date('d/m/Y H:i', strtotime($ticket->fecha)) ?></td>
+                                                <td class="adjusted-size">
+                                                    <a href="/sgen-support/public/soportes/ver/<?= $ticket->id ?>" class="btn btn-sm btn-primary">Ver</a>
+                                                    <?php if ($ticket->estado === 'pendiente'): ?>
+                                                        <a href="/sgen-support/public/soportes/asignar/<?= $ticket->id ?>" class="btn btn-sm btn-warning">Asignar</a>
+                                                    <?php endif; ?>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            <?php else: ?>
+                                <p class="text-muted">No hay tickets pendientes recientes.</p>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Últimos Tickets En Proceso -->
+            <div class="col s12 m12 l12">
+                <div class="card-panel">
+                    <div class="card-title">
+                        <div class="row">
+                            <div class="header-title-left col s12 m6">
+                                <h5>Últimos Tickets En Proceso</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row row-end">
+                        <div class="col s12">
+                            <div class="text-info">
+                    <div class="text-content">
+                        Estos son los tickets actualmente en proceso registrados en el sistema.
+                    </div>
+                </div>
+
+                <?php if (!empty($ultimos_tickets_proceso)): ?>
+                    <table class="bordered highlight table-responsive">
                         <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Descripción</th>
+                                <th class="hide-on-small-only">ID</th>
                                 <th>Equipo</th>
                                 <th>Departamento</th>
                                 <th>Fecha</th>
@@ -81,28 +147,29 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($ultimos_tickets as $ticket): ?>
-                                <tr>
-                                    <td><?= $ticket->id ?></td>
-                                    <td><?= htmlspecialchars($ticket->descripcion) ?></td>
+                        
+                            <?php foreach ($ultimos_tickets_proceso as $ticket): ?>
+                                <tr class="row_table">
+                                    <td class="hide-on-small-only"><?= $ticket->id ?></td>
                                     <td><?= htmlspecialchars($ticket->equipo_tipo . ' - ' . $ticket->equipo_serial) ?></td>
                                     <td><?= htmlspecialchars($ticket->departamento_nombre) ?></td>
                                     <td><?= date('d/m/Y H:i', strtotime($ticket->fecha)) ?></td>
-                                    <td>
+                                    <td class="adjusted-size">
                                         <a href="/sgen-support/public/soportes/ver/<?= $ticket->id ?>" class="btn btn-sm btn-primary">Ver</a>
-                                        <?php if ($ticket->estado === 'pendiente'): ?>
-                                            <a href="/sgen-support/public/soportes/asignar/<?= $ticket->id ?>" class="btn btn-sm btn-warning">Asignar</a>
-                                        <?php endif; ?>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
                     </table>
                 <?php else: ?>
-                    <p class="text-muted">No hay tickets pendientes recientes.</p>
+                    <p class="text-muted">No hay tickets en proceso.</p>
                 <?php endif; ?>
-                </div>
             </div>
+        </div>
+    </div>
+</div>
+
+            
         </div>
     </article>
 
@@ -125,5 +192,6 @@
             </div>
         </div>
     </aside>
+
 </div>
 <div class="clearfix"></div>

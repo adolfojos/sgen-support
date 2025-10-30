@@ -45,10 +45,6 @@
                 <p><strong>Técnico Asignado:</strong><br> <?php echo htmlspecialchars($soporte->tecnico_asignado ?? 'Sin asignar'); ?></p>
                 <hr>
 <pre>
-<?php 
-    var_dump($soporte->estado);
-    var_dump($_SESSION['rol']);
-?>
 </pre>
                 <?php 
                 // Lógica de botones condicionales
@@ -63,9 +59,7 @@
                 <?php endif; ?>
 
                 <?php if ($soporte->estado == 'en_proceso' && $puede_gestionar): ?>
-                    <a href="/sgen-support/public/soportes/resolver/<?php echo $soporte->id; ?>" 
-                       class="btn-accion btn-resolver"
-                       onclick="return confirm('¿Confirma que el ticket #<?php echo $soporte->id; ?> ha sido RESUELTO?')">
+                    <a href="/sgen-support/public/soportes/resolver/<?php echo $soporte->id; ?>"  class="btn-accion btn-resolver" onclick="return confirm('¿Confirma que el ticket #<?php echo $soporte->id; ?> ha sido RESUELTO?')">
                         Marcar como Resuelto
                     </a>
                 <?php endif; ?>

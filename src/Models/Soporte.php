@@ -173,4 +173,30 @@ class Soporte extends Model
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
+    public function findLatestInProcess(int $limit = 5): array
+    {
+        $sql = "
+            SELECT 
+                s.*, 
+                e.serial AS equipo_serial, 
+                e.tipo AS equipo_tipo,
+                d.nombre AS departamento_nombre,
+                u.username AS tecnico_asignado
+            FROM {$this->table} s
+            JOIN equipos e ON s.equipo_id = e.id
+            JOIN departamentos d ON e.departamento_id = d.id
+            LEFT JOIN empleados emp ON s.empleado_id = emp.id
+            LEFT JOIN usuarios u ON emp.usuario_id = u.id
+            WHERE s.estado = 'en_proceso'
+            ORDER BY s.fecha DESC
+            LIMIT ?
+        ";
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(1, $limit, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
+
 }
