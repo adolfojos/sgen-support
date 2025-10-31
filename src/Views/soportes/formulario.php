@@ -12,7 +12,7 @@
                     </div>
                 </div>
             </div>
-            <form action="/sgen-support/public/soportes/guardar" method="POST">
+            <form action="<?=BASE_URL?>soportes/guardar" method="POST">
             <?php if ($is_editing): ?>
                 <input type="hidden" name="id" value="<?php echo $soporte->id; ?>">
             <?php endif; ?>
@@ -47,7 +47,7 @@
                         <button type="submit" class="btn waves-effect waves-light btn-first">
                             Guardar
                         </button>
-                        <a href="/sgen-support/public/soportes" class="btn grey">Regresar</a>
+                        <a href="<?=BASE_URL?>soportes" class="btn grey">Regresar</a>
                     </div>
                 </div>
             </form>

@@ -58,19 +58,12 @@
                                         <li><b>Modelo: </b><?php echo htmlspecialchars($soporte->equipo_modelo ?? 'N/A'); ?></li>
                                         <li><b>Departamento: </b><?php echo htmlspecialchars($soporte->departamento_nombre ?? 'N/A'); ?></li>
                                     </ul>
-
-                                    <!-- Datos bancarios -->
-                                    <ul class="group-info">
-                                        <li><b>Cuenta Bancaria: </b>0102-0864-58-0000081045</li>
-                                        <li><b>Titular de la Cuenta Bancaria: </b>V-19551521</li>
-                                        <li><b>Respuesta: </b>Confirmada</li>
-                                        <li><b>Número de Operación: </b>14592025101615442002252158</li>
-                                    </ul>
                                     
                                     <!-- Acciones del Ticket-->
                                     <ul class="group-info">
                                         <li class="group-title">Acciones del Ticket</li>
-                                        <li><b>Técnico Asignado: </b><?php echo htmlspecialchars($soporte->tecnico_asignado ?? 'Sin asignar'); ?></li>
+                                        <li><b>Técnico Asignado: </b><?php echo htmlspecialchars($soporte->tecnico_asignado ?? 'Sin asignar'); ?>
+                                    </li>
                                     </ul>
                                 </div>
                             </div>
@@ -87,7 +80,7 @@
                 
                 // 1. Botón para Asignar
                 if ($soporte->estado == 'pendiente' && $puede_gestionar): ?>
-                    <a title="Asignar / Tomar Ticket" href="#" class="btn orange ">Asignar / Tomar Ticket</a>
+                    <a title="Asignar / Tomar Ticket" href="<?=BASE_URL?>soportes/asignar/<?php echo $soporte->id; ?>" class="btn orange ">Asignar / Tomar Ticket</a>
                 <?php endif; ?>
 
                 <?php if ($soporte->estado == 'en_proceso' && $puede_gestionar): ?>
@@ -112,9 +105,6 @@
         </div> <!-- row -->
     </div> <!-- conten-body -->
 </article>
-</pre>
-
-
 <?php else: ?>
     <p>El ticket de soporte solicitado no existe.</p>
 <?php endif; ?>

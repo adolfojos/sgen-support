@@ -1,39 +1,78 @@
-<h2><?php echo $titulo; ?></h2>
+<article>
+    <div class="conten-body">
+        <div class="col s12">
+            <div class="card-panel">
+                <!-- Título -->
+                <div class="card-title">
+                    <div class="row">
+                        <div class="header-title-left col s12 m6">
+                            <h5><?php echo $titulo; ?></h5>
+                        </div>
+                    </div>
+                </div>
 
-<p>Ticket: <strong>#<?php echo $soporte->id; ?></strong> | Estado: <span class="estado-<?php echo $soporte->estado; ?>"><?php echo $soporte->estado; ?></span></p>
+                <!-- Texto informativo -->
+                <div class="row">
+                    <div class="col s12">
+                        <div class="text-info">
+                            <div class="text-content">
+                                Text content
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-<form action="/sgen-support/public/soportes/procesar_asignacion" method="POST">
-    
-    <input type="hidden" name="soporte_id" value="<?php echo $soporte->id; ?>">
+                <!-- Formulario de asignación -->
+                <div class="row row-end">
+                    <form action="<?=BASE_URL?>soportes/procesar_asignacion" method="POST">
+                        <input type="hidden" name="soporte_id" value="<?php echo $soporte->id; ?>">
 
-<div style="margin-bottom: 20px;">
-    <label for="empleado_id" style="display: block; font-weight: bold; margin-bottom: 5px;">Seleccionar Técnico:</label>
-    <select id="empleado_id" name="empleado_id" required style="padding: 10px; width: 300px;">
-        <option value="">-- Seleccione un Técnico --</option>
-        <?php 
-        // $tecnicos viene del controlador (filtrados por rol = 'tecnico')
-        if (isset($tecnicos) && is_array($tecnicos)):
-            foreach ($tecnicos as $tecnico): 
-                $selected = ($_SESSION['user_id'] == $tecnico->id) ? 'selected' : '';
-        ?>
-<option value="<?php echo $tecnico->empleado_id; ?>" 
-        <?php echo ($_SESSION['user_id'] == $tecnico->usuario_id) ? 'selected' : ''; ?>>
-    <?php echo htmlspecialchars($tecnico->username . " (" . $tecnico->nombre . " " . $tecnico->apellido . ")"); ?>
-</option>
+                        <div class="col s12">
+                            <span id="name_member">
+                                Ticket: <b>#<?php echo $soporte->id; ?></b>
+                            </span> |
+                            Estado:
+                            <span class="estado-<?php echo $soporte->estado; ?>">
+                                <?php echo $soporte->estado; ?>
+                            </span>
+                        </div>
 
-        <?php 
-            endforeach;
-        endif;
-        ?>
-    </select>
-    <?php if (empty($tecnicos)): ?>
-        <p style="color: red;">¡Advertencia! No hay empleados con rol 'tecnico' para asignar.</p>
-    <?php endif; ?>
-</div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <select id="empleado_id" name="empleado_id" required>
+                                    <option value="" disabled selected>Seleccione un Técnico</option>
+                                    <?php 
+                                    if (isset($tecnicos) && is_array($tecnicos)):
+                                        foreach ($tecnicos as $tecnico): 
+                                            $selected = ($_SESSION['user_id'] == $tecnico->usuario_id) ? 'selected' : '';
+                                    ?>
+                                        <option value="<?php echo $tecnico->empleado_id; ?>" <?php echo $selected; ?>>
+                                            <?php echo htmlspecialchars($tecnico->username . " (" . $tecnico->nombre . " " . $tecnico->apellido . ")"); ?>
+                                        </option>
+                                    <?php 
+                                        endforeach;
+                                    endif;
+                                    ?>
+                                </select>
 
+                                <?php if (empty($tecnicos)): ?>
+                                    <p style="color: red;">¡Advertencia! No hay empleados con rol 'técnico' para asignar.</p>
+                                <?php endif; ?>
 
-    <button type"submit" style="padding: 10px 20px; background-color: #007bff; color: white; border: none; cursor: pointer;">
-        Confirmar Asignación
-    </button>
-    <a href="/sgen-support/public/soportes/ver/<?php echo $soporte->id; ?>" style="margin-left: 10px; text-decoration: none; color: #6c757d;">Cancelar</a>
-</form>
+                                <label class="required" for="empleado_id">Seleccionar Técnico:</label>
+                            </div>
+                        </div>
+
+                        <!-- Botones -->
+                        <div class="row row-end btn-actions">
+                            <div class="col l12">
+                                <input id="send_member" class="btn btn-first" type="submit" value=" Confirmar Asignación"/>
+                                <a href="<?=BASE_URL?>soportes/" class="btn grey" title="Regresar">Cancelar</a>
+                            </div>
+                        </div>
+                    </form>
+                </div> <!-- row-end -->
+            </div> <!-- card-panel -->
+        </div> <!-- col s12 -->
+    </div> <!-- conten-body -->
+</article>
