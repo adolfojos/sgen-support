@@ -82,23 +82,7 @@
         // Definimos un estilo básico para los mensajes
     ?>
         <style>
-            .flash-message {
-                padding: 15px;
-                margin-bottom: 20px;
-                border: 1px solid transparent;
-                border-radius: 4px;
-                font-weight: bold;
-            }
-            .flash-success {
-                color: #155724;
-                background-color: #d4edda;
-                border-color: #c3e6cb;
-            }
-            .flash-error {
-                color: #721c24;
-                background-color: #f8d7da;
-                border-color: #f5c6cb;
-            }
+
         </style>
         
         <div class="flash-message flash-<?php echo htmlspecialchars($flash['type']); ?>">
