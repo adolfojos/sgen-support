@@ -1,10 +1,10 @@
+            </div>
+        <div class="clearfix"></div>
     </main>
-
     <!-- Footer -->
     <footer class="center-align">
-        <span>SGP 2025 - República Bolivariana de Venezuela</span>
+        <span><?= date('Y') ?> © SGP - Sistema de Gestión de Soportes Técnicos. Todos los derechos reservados.</span>
     </footer>
-
     <!-- Scripts -->
     <script src="<?= VENDOR_PATH ?>jquery/jquery.min.js"></script>
     <script src="<?= VENDOR_PATH ?>materialize/dist-patria/js/materialize.min.js"></script>
@@ -18,14 +18,12 @@
     <script src="<?= JS_PATH ?>datatables-global.js"></script>
     <script src="<?= JS_PATH ?>inactivity-logout.js"></script>
     <script src="<?= JS_PATH ?>identification-letter-fix.js"></script>
-
     <!-- Inicialización de componentes -->
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             $('.button-collapse').sideNav();
             $('.modal').modal();
         });
-
         // Ocultar toast después de 5 segundos
         setTimeout(() => {
             const toast = document.querySelector('#toast-container .toast');
@@ -35,7 +33,6 @@
             }
         }, 5000);
     </script>
-
     <!-- Toast -->
     <div id="toast-container">
         <div class="toast green" style="top: 0px; opacity: 1; flex: 1;">
@@ -43,7 +40,6 @@
             <span class="toast-text"></span>
         </div>
     </div>
-
     <!-- Modal de inactividad -->
     <div id="message-alert-logout" class="modal">
         <div class="modal-content">
@@ -54,19 +50,32 @@
             <a id="alert-accept" href="#!" class="modal-action modal-close waves-effect btn">Aceptar</a>
         </div>
     </div>
-
-    <!-- Máscara de cédula -->
+    <!-- Máscara DNI -->
     <script>
         const options = {
             translation: {
-                '0': { pattern: /\d/ },
-                '1': { pattern: /[1-9]/ },
-                '9': { pattern: /\d/, optional: true },
-                '#': { pattern: /\d/, recursive: true },
-                'C': { pattern: /[VvEe]/, fallback: 'V' }
+                '0': {
+                    pattern: /\d/
+                },
+                '1': {
+                    pattern: /[1-9]/
+                },
+                '9': {
+                    pattern: /\d/,
+                    optional: true
+                },
+                '#': {
+                    pattern: /\d/,
+                    recursive: true
+                },
+                'C': {
+                    pattern: /[VvEe]/,
+                    fallback: 'V'
+                }
             }
         };
         $('#document_id').mask('C-19999999', options);
     </script>
-</body>
-</html>
+    </body>
+
+    </html>

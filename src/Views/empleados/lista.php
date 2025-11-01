@@ -1,3 +1,18 @@
+<!-- Menú lateral izquierdo (plantilla base) -->
+<aside id="left-side-menu">
+    <ul class="collapsible collapsible-accordion">
+        <li class="no-padding">
+            <a href="RUTA_1.html" class="waves-effect waves-grey">
+                <i class="material-icons">menu</i>Nombre Sección 1
+            </a>
+        </li>
+        <li class="no-padding">
+            <a href="RUTA_2.html" class="waves-effect waves-grey">
+                <i class="material-icons">menu</i>Nombre Sección 2
+            </a>
+        </li>
+    </ul>
+</aside>
 <h2><?php echo $titulo; ?></h2>
 
 <p>
@@ -32,8 +47,7 @@
                     </td>
                     <td>
                         <a href="/sgen-support/public/empleados/editar/<?php echo $e->id; ?>">Editar</a> |
-                        <a href="/sgen-support/public/empleados/eliminar/<?php echo $e->id; ?>" 
-                           onclick="return confirm('¿Está seguro de eliminar a <?php echo $e->nombre; ?>?')">Eliminar</a>
+                        <a href="/sgen-support/public/empleados/eliminar/<?php echo $e->id; ?>" onclick="return confirm('¿Está seguro de eliminar a <?php echo $e->nombre; ?>?')">Eliminar</a>
                     </td>
                 </tr>
             <?php endforeach; ?>

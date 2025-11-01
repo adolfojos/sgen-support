@@ -51,7 +51,9 @@ abstract class Controller {
         if (file_exists($viewFile)) {
             // Asegúrate de que estos archivos de layout existen
             require_once __DIR__ . '/../Views/layout/header.php';
+            require_once __DIR__ . '/../Views/layout/left-side-menu.php';
             require_once $viewFile;
+            require_once __DIR__ . '/../Views/layout/right-side-menu.php';
             require_once __DIR__ . '/../Views/layout/footer.php';
         } else {
             die("Error: La vista '$view' no fue encontrada.");

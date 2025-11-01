@@ -1,7 +1,23 @@
+<!-- Menú lateral izquierdo (plantilla base) -->
+<aside id="left-side-menu">
+    <ul class="collapsible collapsible-accordion">
+        <li class="no-padding">
+            <a href="RUTA_1.html" class="waves-effect waves-grey">
+                <i class="material-icons">menu</i>Nombre Sección 1
+            </a>
+        </li>
+        <li class="no-padding">
+            <a href="RUTA_2.html" class="waves-effect waves-grey">
+                <i class="material-icons">menu</i>Nombre Sección 2
+            </a>
+        </li>
+    </ul>
+</aside>
+
 <?php 
-$is_editing = isset($equipo) && $equipo !== null; 
-$action_title = $is_editing ? 'Editar' : 'Registrar';
-$current_dept_id = $is_editing ? $equipo->departamento_id : '';
+    $is_editing = isset($equipo) && $equipo !== null; 
+    $action_title = $is_editing ? 'Editar' : 'Registrar';
+    $current_dept_id = $is_editing ? $equipo->departamento_id : '';
 ?>
 
 <article>

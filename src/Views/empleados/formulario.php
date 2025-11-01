@@ -1,3 +1,18 @@
+<!-- Menú lateral izquierdo (plantilla base) -->
+<aside id="left-side-menu">
+    <ul class="collapsible collapsible-accordion">
+        <li class="no-padding">
+            <a href="RUTA_1.html" class="waves-effect waves-grey">
+                <i class="material-icons">menu</i>Nombre Sección 1
+            </a>
+        </li>
+        <li class="no-padding">
+            <a href="RUTA_2.html" class="waves-effect waves-grey">
+                <i class="material-icons">menu</i>Nombre Sección 2
+            </a>
+        </li>
+    </ul>
+</aside>
 <?php 
 $is_editing = isset($empleado) && $empleado !== null; 
 $action_title = $is_editing ? 'Editar' : 'Registrar';
@@ -14,23 +29,17 @@ $current_user_id = $is_editing ? $empleado->usuario_id : '';
 
     <div style="margin-bottom: 15px;">
         <label for="nombre" style="display: block; font-weight: bold;">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" required 
-               value="<?php echo $is_editing ? htmlspecialchars($empleado->nombre) : ''; ?>"
-               style="padding: 8px; width: 300px;">
+        <input type="text" id="nombre" name="nombre" required value="<?php echo $is_editing ? htmlspecialchars($empleado->nombre) : ''; ?>" style="padding: 8px; width: 300px;">
     </div>
     
     <div style="margin-bottom: 15px;">
         <label for="apellido" style="display: block; font-weight: bold;">Apellido:</label>
-        <input type="text" id="apellido" name="apellido" required 
-               value="<?php echo $is_editing ? htmlspecialchars($empleado->apellido) : ''; ?>"
-               style="padding: 8px; width: 300px;">
+        <input type="text" id="apellido" name="apellido" required value="<?php echo $is_editing ? htmlspecialchars($empleado->apellido) : ''; ?>" style="padding: 8px; width: 300px;">
     </div>
 
     <div style="margin-bottom: 15px;">
         <label for="email" style="display: block; font-weight: bold;">Email:</label>
-        <input type="email" id="email" name="email" required 
-               value="<?php echo $is_editing ? htmlspecialchars($empleado->email) : ''; ?>"
-               style="padding: 8px; width: 300px;">
+        <input type="email" id="email" name="email" required value="<?php echo $is_editing ? htmlspecialchars($empleado->email) : ''; ?>" style="padding: 8px; width: 300px;">
     </div>
 
     <div style="margin-bottom: 15px;">
