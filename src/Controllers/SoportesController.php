@@ -75,7 +75,7 @@ class SoportesController extends Controller
      */
     public function editar(int $id)
     {
-        $this->restrictTo(['admin']);
+        $this->restrictTo(['admin', 'tecnico']);
 
         $soporte = $this->soporteModel->findById($id);
         if (!$soporte) {
@@ -143,7 +143,7 @@ class SoportesController extends Controller
      */
     public function eliminar(int $id)
     {
-        $this->restrictTo(['admin']);
+        $this->restrictTo(['admin', 'tecnico']);
 
         $soporte = $this->soporteModel->findById($id);
         if (!$soporte) {

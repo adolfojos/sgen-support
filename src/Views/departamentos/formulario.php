@@ -1,25 +1,44 @@
+
 <?php 
 $is_editing = isset($departamento) && $departamento !== null; 
 $action_title = $is_editing ? 'Editar' : 'Crear';
 ?>
+<article>
+    <div class="conten-body">
+        <div class="card-panel">
+            <!-- Título -->
+            <div class="card-title">
+                <div class="row">
+                    <div class="header-title-left col s12">
+                        <h5><?php echo $action_title; ?> Departamento</h5>
+                    </div>
+                </div>
+            </div>
 
-<h2><?php echo $action_title; ?> Departamento</h2>
+            <!-- Formulario -->
+            <form action="<?=BASE_URL?>departamentos/guardar" method="POST">
+                <?php if ($is_editing): ?>
+                    <input type="hidden" name="id" value="<?php echo $departamento->id; ?>">
+                <?php endif; ?>
 
-<form action="/sgen-support/public/departamentos/guardar" method="POST">
-    
-    <?php if ($is_editing): ?>
-        <input type="hidden" name="id" value="<?php echo $departamento->id; ?>">
-    <?php endif; ?>
-
-    <div style="margin-bottom: 15px;">
-        <label for="nombre" style="display: block; font-weight: bold;">Nombre del Departamento:</label>
-        <input type="text" id="nombre" name="nombre" required 
-               value="<?php echo $is_editing ? htmlspecialchars($departamento->nombre) : ''; ?>"
-               style="padding: 8px; width: 300px;">
-    </div>
-
-    <button type="submit" style="padding: 10px 20px; background-color: #28a745; color: white; border: none; cursor: pointer;">
-        <?php echo $is_editing ? 'Actualizar' : 'Guardar'; ?>
-    </button>
-    <a href="/sgen-support/public/departamentos" style="margin-left: 10px; text-decoration: none; color: #6c757d;">Cancelar</a>
-</form>
+                <div id="pp">
+                    <!-- nombre -->
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input type="text" id="nombre" name="nombre" required value="<?php echo $is_editing ? htmlspecialchars($departamento->nombre) : ''; ?>" />
+                            <label class="required" for="nombre">Nombre del Departamento:</label>
+                        </div>
+                    </div>
+                <!-- Botones -->
+                <div class="row btn-actions">
+                    <div class="col l12">
+                        <button type="submit" name="action" class="btn waves-effect waves-light btn-first">
+                            <?php echo $is_editing ? 'Actualizar' : 'Registrar'; ?> Departamento
+                        </button>
+                        <a href="<?=BASE_URL?>departamentos" class="btn grey" title="Regresar">Regresar</a>
+                    </div>
+                </div>
+            </form>
+        </div> <!-- card-panel -->
+    </div> <!-- conten-body -->
+</article>

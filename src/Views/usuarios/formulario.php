@@ -1,54 +1,78 @@
 <?php 
-$is_editing = isset($usuario) && $usuario !== null; 
-$action_title = $is_editing ? 'Editar' : 'Crear';
+    $is_editing = isset($usuario) && $usuario !== null; 
+    $action_title = $is_editing ? 'Editar' : 'Crear';
 ?>
+<article>
+    <div class="conten-body">
+        <div class="card-panel">
+            <!-- Título -->
+            <div class="card-title">
+                <div class="row">
+                    <div class="header-title-left col s12">
+                        <h5><?php echo $action_title; ?> Usuario</h5>
+                    </div>
+                </div>
+            </div>          
+            <!-- Formulario -->
+            <form action="<?=BASE_URL?>usuarios/guardar" method="POST">
+                <?php if ($is_editing): ?>
+                    <input type="hidden" name="id" value="<?php echo $usuario->id; ?>">
+                <?php endif; ?>
+                <div id="usuario-form">
+                    <!-- Nombre de Usuario: -->
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input type="text" id="username" name="username" required value="<?php echo $is_editing ? htmlspecialchars($usuario->username) : ''; ?>" />
+                            <label class="required" for="username">Nombre de Usuario:</label>
+                        </div>
+                    </div>
+                    <!-- Contraseña -->
+                    <div class="row">
+                        <div class="input-field col s12">   
+                            <input type="password" id="password" name="password" <?php echo $is_editing ? '' : 'required'; ?> />
+                            <label class="required" for="password">Contraseña<?php echo $is_editing ? ' (Dejar vacío para no cambiar)' : ' *'; ?>:</label>
+                        </div>
+                    </div>
+                    <!-- Departamento -->
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <select id="rol" name="rol" required>
+                                <option value="" disabled selected>Seleccionar Rol</option>
+                                <?php
+                                $current_rol = $is_editing ? $usuario->rol : ''; 
+                                if (isset($allowedRoles) && is_array($allowedRoles)):
+                                    foreach ($allowedRoles as $rol):
+                                        $selected = ($current_rol === $rol) ? 'selected' : '';
+                                        ?>
+                                    <option value="<?php echo $rol; ?>" <?php echo $selected; ?>>
+                                        <?php echo ucfirst($rol); ?>
+                                    </option>
+                                    <?php
+                                    endforeach;
+                                endif;
+                                ?>
+                            </select>
+                            <?php if (empty($allowedRoles)): ?>
+                                <p style="color: red;">
+                                    ¡Advertencia! No hay Rol de Usuario. 
+                                    <a href="<?=BASE_URL?>departamentos/crear">Cree uno primero</a>.
+                                </p>
+                            <?php endif; ?>
+                            <label class="required" for="rol">Rol de Usuario:</label>
+                        </div>
+                    </div>
 
-<h2><?php echo $action_title; ?> Usuario</h2>
 
-<form action="/sgen-support/public/usuarios/guardar" method="POST">
-    
-    <?php if ($is_editing): ?>
-        <input type="hidden" name="id" value="<?php echo $usuario->id; ?>">
-    <?php endif; ?>
-
-    <div style="margin-bottom: 15px;">
-        <label for="username" style="display: block; font-weight: bold;">Nombre de Usuario:</label>
-        <input type="text" id="username" name="username" required 
-               value="<?php echo $is_editing ? htmlspecialchars($usuario->username) : ''; ?>"
-               style="padding: 8px; width: 300px;"
-               >
-    </div>
-    
-    <div style="margin-bottom: 15px;">
-        <label for="password" style="display: block; font-weight: bold;">Contraseña<?php echo $is_editing ? ' (Dejar vacío para no cambiar)' : ' *'; ?>:</label>
-        <input type="password" id="password" name="password" 
-               <?php echo $is_editing ? '' : 'required'; ?>
-               style="padding: 8px; width: 300px;">
-    </div>
-
-    <div style="margin-bottom: 15px;">
-        <label for="rol" style="display: block; font-weight: bold;">Rol de Usuario:</label>
-        <select id="rol" name="rol" required style="padding: 8px; width: 300px;">
-            <option value="">-- Seleccionar Rol --</option>
-            <?php 
-            $current_rol = $is_editing ? $usuario->rol : '';
-            // $allowedRoles viene del controlador
-            if (isset($allowedRoles) && is_array($allowedRoles)):
-                foreach ($allowedRoles as $rol): 
-                    $selected = ($current_rol === $rol) ? 'selected' : '';
-            ?>
-                    <option value="<?php echo $rol; ?>" <?php echo $selected; ?>>
-                        <?php echo ucfirst($rol); ?>
-                    </option>
-            <?php 
-                endforeach;
-            endif;
-            ?>
-        </select>
-    </div>
-
-    <button type="submit" style="padding: 10px 20px; background-color: #28a745; color: white; border: none; cursor: pointer;">
-        <?php echo $is_editing ? 'Actualizar' : 'Crear'; ?> Usuario
-    </button>
-    <a href="/sgen-support/public/usuarios" style="margin-left: 10px; text-decoration: none; color: #6c757d;">Cancelar</a>
-</form>
+                <!-- Botones -->
+                <div class="row btn-actions">
+                    <div class="col l12">
+                        <button type="submit" name="action" class="btn waves-effect waves-light btn-first">
+                            <?php echo $is_editing ? 'Actualizar' : 'Crear'; ?> Usuario
+                        </button>
+                        <a href="<?=BASE_URL?>usuarios" class="btn grey" title="Regresar">Regresar</a>
+                    </div>
+                </div>
+            </form>
+        </div> <!-- card-panel -->
+    </div> <!-- conten-body -->
+</article>

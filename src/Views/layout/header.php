@@ -34,8 +34,8 @@
                             <li><a href="<?=BASE_URL?>soportes"><i class="ico-nomina mdi-action-nomina"></i><span class="hide-on-small-only">Tickets</span></a></li>
                             <li><a href="<?=BASE_URL?>soportes/crear"><i class="ico-pago_facturas mdi-action-pago_facturas"></i><span class="hide-on-small-only">Abrir Ticket</span></a></li>
                             <?php if (isset($_SESSION['rol']) && $_SESSION['rol'] == 'admin'): ?>
-                            <li><a href="<?=BASE_URL?>equipos"><i class="ico-biopago mdi-action-biopago"></i><span class="hide-on-small-only">Equipos</span></a></li>
-                            <li><a href="<?=BASE_URL?>departamentos"><i class="ico-laboral mdi-action-laboral"></i><span class="hide-on-small-only">Departamentos</span></a></li>
+                            <li><a href="<?=BASE_URL?>equipos"><i class="material-icons mdi-material-icons">laptop</i><span class="hide-on-small-only">Equipos</span></a></li>
+                            <li><a href="<?=BASE_URL?>departamentos"><i class="material-icons mdi-material-icons">domain</i><span class="hide-on-small-only">Departamentos</span></a></li>
                             <li><a href="<?=BASE_URL?>usuarios"><i class="ico-group mdi-action-group"></i><span class="hide-on-small-only">Usuarios</span></a></li>
                             <li><a href="<?=BASE_URL?>profile"><i class="ico-account_circle mdi-action-account_circle"></i><span class="hide-on-small-only">Perfil</span></a></li>
                             <?php endif; ?>
