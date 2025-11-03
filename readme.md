@@ -27,35 +27,6 @@ Facilitar la atención técnica institucional mediante un sistema centralizado q
 
 ##  Estructura del proyecto
 
-#  SGEN-Support - Sistema de Gestión de Tickets de Soporte Técnico
-
-SGEN-Support es una aplicación web desarrollada en PHP 8 para gestionar solicitudes de soporte técnico dentro de una institución. Su arquitectura modular y escalable permite registrar, asignar y resolver tickets de manera eficiente, con métricas claras y una interfaz accesible para usuarios, técnicos y administradores.
-
-##  Objetivo
-
-Facilitar la atención técnica institucional mediante un sistema centralizado que documenta cada solicitud, mejora la comunicación interna y permite tomar decisiones basadas en datos.
-
-##  Funcionalidades principales
-
-- Registro de tickets por área, prioridad y tipo de incidencia
-- Panel de control con métricas y filtros dinámicos
-- Asignación de técnicos y seguimiento del estado del ticket
-- Historial de intervenciones y comentarios
-- Redirección automática según rol (usuario, técnico, administrador)
-- URLs amigables mediante `.htaccess`
-- Diseño adaptable con Materialize CSS y componentes personalizados
-
-##  Tecnologías utilizadas
-
-- PHP 8
-- MySQL
-- Composer (autocarga y dependencias)
-- JavaScript (jQuery, plugins)
-- Materialize CSS
-- Git para control de versiones
-
-##  Estructura del proyecto
-
 
 /sgen-support/
 |
