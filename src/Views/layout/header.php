@@ -58,6 +58,12 @@
                                     </a>
                                 </li>
                                 <li class="">
+                                    <a href="<?= BASE_URL ?>log" title="log">
+                                    <i class="ico-security"></i>
+                                    <span class="hide-on-small-only">log</span>
+                                    </a>
+                                </li>
+                                <li class="">
                                     <a href="<?= BASE_URL ?>usuarios" title="Usuarios">
                                     <i class="material-icons">people</i>
                                     <span class="hide-on-small-only">Usuarios</span>

@@ -3,7 +3,7 @@ namespace App\Controllers;
 
 use App\Core\Controller;
 use App\Models\Usuario;
-
+use App\Models\SesionLog; 
 class AuthController extends Controller
 {
     private $usuarioModel;
@@ -60,7 +60,13 @@ class AuthController extends Controller
             $_SESSION['user_id']  = $usuario->id;
             $_SESSION['username'] = $usuario->username;
             $_SESSION['rol']      = $usuario->rol;
-            
+            $sesionLogModel = new SesionLog();
+            $log_id = $sesionLogModel->createLog( // <-- NUEVO
+            $usuario->id, 
+            $usuario->username
+        );
+        
+        $_SESSION['session_log_id'] = $log_id;
             // Redirigir al dashboard (o lista de soportes)
             header('Location: /sgen-support/public/');
             exit;
@@ -79,10 +85,16 @@ class AuthController extends Controller
      */
     public function logout()
     {
+        $log_id = $_SESSION['session_log_id'] ?? null;
+        if ($log_id) {
+        $sesionLogModel = new SesionLog();
+        $sesionLogModel->updateLogoutTime($log_id);
+    }
         session_unset();   // Libera todas las variables de sesión
         session_destroy(); // Destruye la sesión
         
         // Redirige al login
+        $this->setFlashMessage('success', 'Has cerrado sesión correctamente.');
         header('Location: /sgen-support/public/auth/login');
         exit;
     }
