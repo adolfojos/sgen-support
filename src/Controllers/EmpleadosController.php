@@ -135,4 +135,5 @@ class EmpleadosController extends Controller {
         header('Location: /sgen-support/public/empleados');
         exit;
     }
+    
 }

@@ -6,6 +6,8 @@ use App\Models\Soporte;
 use App\Models\Equipo;
 use App\Models\Departamento;
 use App\Models\Usuario;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 class SoportesController extends Controller
 {
@@ -247,4 +249,31 @@ class SoportesController extends Controller
         header("Location: /sgen-support/public/soportes/ver/{$id}");
         exit;
     }
+    public function pdf(int $id)
+    {
+    $soporte = $this->soporteModel->findByIdWithDetails($id);
+
+    if (!$soporte) {
+        $this->setFlashMessage('error', 'Tickte no encontrado.');
+        header('Location: ' . BASE_URL . 'soportes');
+        exit;
+    }
+
+    // Configuración de Dompdf
+    $options = new Options();
+    $options->set('isRemoteEnabled', true);
+    $dompdf = new Dompdf($options);
+
+    // Renderizamos la vista como HTML
+    ob_start();
+    include __DIR__ . '/../Views/soportes/pdf.php';
+    $html = ob_get_clean();
+
+    $dompdf->loadHtml($html);
+    $dompdf->setPaper('A4', 'portrait');
+    $dompdf->render();
+
+    // Descargar directamente
+    $dompdf->stream("Ticket_R_{$soporte->id}.pdf", ["Attachment" => false]);
+}
 }

@@ -13,8 +13,7 @@
         <link rel="stylesheet" type="text/css" href="<?= VENDOR_PATH ?>materialize-datatables/css/dataTables.materialize.css"/>
         <link rel="stylesheet" type="text/css" href="<?= CSS_PATH ?>main.css"/>
         <link rel="stylesheet" type="text/css" href="<?= CSS_PATH ?>fonts.css"/>
-
-    <link rel="stylesheet" href="<?= CSS_PATH ?>link-options.css">
+        <link rel="stylesheet" href="<?= CSS_PATH ?>link-options.css">
     </head>
     <body>
         <header>
@@ -55,6 +54,12 @@
                                     <a href="<?= BASE_URL ?>departamentos" title="Departamentos">
                                     <i class="material-icons">domain</i>
                                     <span class="hide-on-small-only">Departamentos</span>
+                                    </a>
+                                </li>
+                                <li class="">
+                                    <a href="<?= BASE_URL ?>empleados" title="Empleados">
+                                    <i class="ico-security"></i>
+                                    <span class="hide-on-small-only">Empleados</span>
                                     </a>
                                 </li>
                                 <li class="">

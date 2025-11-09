@@ -30,7 +30,7 @@ class DepartamentosController extends Controller {
             'departamentos' => $departamentos
         ]);
     }
-
+    
     /**
      * Muestra el formulario para crear un nuevo departamento.
      * Acceso: /departamentos/crear

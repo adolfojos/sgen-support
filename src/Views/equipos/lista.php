@@ -33,7 +33,7 @@
                 <!-- Tabla de equipos -->
                 <div class="row row-end">
                     <div class="col s12">
-                        <table id="equipos" class="bordered highlight table-responsive">
+                        <table id="equipos" class="datatable bordered highlight table-responsive">
                             <thead>
                                 <tr>
                                     <th data-priority="0" class="hide-on-small-only">ID</th>

@@ -32,10 +32,9 @@
                 <!-- Tabla de tickets -->
                 <div class="row row-end">
                     <div class="col s12">
-                        <table id="tickets" class="bordered highlight responsive-table">
+                        <table id="tickets" class="datatable bordered highlight responsive-table">
                             <thead>
                                 <tr>
-                                    <th data-priority="0" class="hide-on-small-only">ID</th>
                                     <th data-priority="1" class="hide-on-small-only">Fecha</th>
                                     <th data-priority="2">Estado</th>
                                     <th data-priority="3">Departamento</th>
@@ -47,7 +46,6 @@
                             <tbody>
                                 <?php foreach ($soportes as $soporte): ?>
                                     <tr>
-                                        <td class="hide-on-small-only nowrap"><?php echo $soporte->id; ?></td>
                                         <td class="hide-on-small-only"><?php echo date('d/m/y', strtotime($soporte->fecha)); ?></td>
                                         <td>
                                             <span class="estado-<?php echo $soporte->estado; ?>">
@@ -66,6 +64,7 @@
                                             <?php echo htmlspecialchars($soporte->equipo_serial); ?> (<?php echo $soporte->equipo_tipo; ?>)
                                         </td>
                                         <td class="adjusted-size">
+                                            <a title="PDF" href="<?= BASE_URL ?>soportes/pdf/<?= $soporte->id ?>"> <i class="material-icons">picture_as_pdf</i></a>
                                             <a title="Ver" href="<?=BASE_URL?>soportes/ver/<?php echo $soporte->id; ?>"><i class="ico-visibility tiny"></i></a>
                                             <a title="Editar" href="<?=BASE_URL?>soportes/editar/<?php echo $soporte->id; ?>"><i class="ico-edit tiny"></i></a>
                                             <a title="Eliminar" href="<?=BASE_URL?>soportes/eliminar/<?php echo $soporte->id; ?>" onclick="return confirm('¿Está seguro de eliminar el Ticket: <?php echo $soporte->id; ?>?')"><i class="ico-delete tiny"></i></a>
